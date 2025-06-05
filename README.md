@@ -152,7 +152,39 @@ Windows:
 
 MacOS:
 
-- Instructions coming soon!
+Tested on **macOS Sequoia (15)**.
+
+1. **Install Homebrew** (if not already installed)
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+2. **Install required tools**
+   ```bash
+   brew install git gh cmake qt6
+   ```
+3. **Authenticate GitHub CLI** (optional)
+   ```bash
+   gh auth login
+   ```
+4. **Clone this repository**
+   ```bash
+   git clone https://github.com/mehtabmahir/easy-whisper-ui.git
+   cd easy-whisper-ui
+   ```
+5. **Open `CMakeLists.txt` in Qt Creator** or build with CMake
+   ```bash
+   cmake -B build -DCMAKE_PREFIX_PATH=$(brew --prefix qt6)
+   cmake --build build -j$(sysctl -n hw.ncpu)
+   ```
+6. **Run the application**
+   ```bash
+   open build/EasyWhisperUI.app
+   ```
+
+### Troubleshooting
+- If CMake cannot locate Qt, ensure `CMAKE_PREFIX_PATH` points to the Homebrew Qt directory (`$(brew --prefix qt6)`).
+- On first launch macOS may block the app. Right-click the bundle, choose **Open**, and approve the prompt.
+- To view logs, run the app from Terminal so any errors appear in the console.
 
 ---
 
